@@ -1,4 +1,4 @@
-For problem:   http://codeforces.com/contest/598/problem/D
+//For problem:   http://codeforces.com/contest/598/problem/D
 
 void dfs(int x,int y,vector<cordinates> &p,long int &cnt)
 {
