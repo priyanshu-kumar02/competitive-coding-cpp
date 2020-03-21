@@ -1,6 +1,6 @@
 1. ( a + b ) % c = ( ( a % c ) + ( b % c ) ) % c
 2. ( a * b ) % c = ( ( a % c ) * ( b % c ) ) % c
-3. ( a – b ) % c = ( ( a % c ) – ( b % c ) ) % c ( see note )
+3. ( a â€“ b ) % c = ( ( a % c ) â€“ ( b % c ) ) % c ( see note )
 4. ( a / b ) % c NOT EQUAL TO ( ( a % c ) / ( b % c ) ) % c
 
 
@@ -19,21 +19,16 @@ Now, (x/y)%M = x*MMI(y,M);
 CODE TO FIND MMI USING FERMET THEOREM.
 MMI(y,M)=[y^(m-2)]%M;
 
-int fast_pow(long long base, long long n,long long M)
-{
-    if(n==0)
-       return 1;
-    if(n==1)
-    return base;
-    long long halfn=fast_pow(base,n/2,M);
-    if(n%2==0)
-        return ( halfn * halfn ) % M;
-    else
-        return ( ( ( halfn * halfn ) % M ) * base ) % M;
+ll pow(ll x, ll y,ll m) {
+    if( y == 0) return 1;
+    ll half = pow(x, y/2, m);
+    ll full = (half * half) % m;
+    return y%2 ? (x * full) % m : full;
 }
+
 int findMMI_fermat(int n,int M) 
 {
-    return fast_pow(n,M-2,M);
+    return pow(n,M-2,M);
 }
 
 source:https://codeaccepted.wordpress.com/2014/02/15/output-the-answer-modulo-109-7/
