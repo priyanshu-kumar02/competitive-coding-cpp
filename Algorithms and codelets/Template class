@@ -1,0 +1,14 @@
+template<class my> my prod(my x,my y)
+{
+	my ans=x*y;
+	return ans;
+	}
+
+int main()
+{
+	int a=2,b=3;
+	float c=2.5,d=10.5;
+	
+	cout<<prod(a,b)<<":"<<prod(c,d);
+}
+

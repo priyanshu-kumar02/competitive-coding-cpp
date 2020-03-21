@@ -1,0 +1,10 @@
+Details regarding the course: 
+Name of the course: Introduction to modern application development from the cloud to your browser
+Course url: https://onlinecourses.nptel.ac.in/noc16_cs23
+Course duration : 04 weeks
+Start date and end date of course:05 Sep 2016 - 30 Sep 2016
+Dates of exams :  16 October 2016 & 23 October 2016
+Time of exam : 2pm - 5pm
+Final List of exam cities will be available in exam registration form.
+Exam registration url - Will be announced shortly
+Exam Fee: The online registration form has to be filled and the certification exam fee of approximately Rs 1000(non-Programming)/1250(Programming) needs to be paid.

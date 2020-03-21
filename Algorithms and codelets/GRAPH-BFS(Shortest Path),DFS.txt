@@ -1,0 +1,122 @@
+#include<algorithm> //min,max
+#include<math.h> //sqrt
+#include<iostream>
+#include <list>  //for queue and list
+#include <vector>   //graphs are stored in array of vector;
+#define lli long long int
+using namespace std;
+// This class represents a directed graph using adjacency list representation
+class Graph
+{
+    lli V;    // No. of vertices
+public:
+	    vector<lli > *adj;    // Pointer to an array containing vectors
+
+    Graph(lli V);  // Constructor
+    void addEdge(lli v, lli w); // function to add an edge to graph
+    lli BFS(lli from);
+    void DFS(lli s);
+    void DFS_Util(lli k,bool visited[]);
+
+};
+
+Graph::Graph(lli V)
+{
+    this->V = V;
+    adj = new vector<lli>[V];
+}
+
+void Graph::addEdge(lli v, lli w)
+{
+    adj[v].push_back(w); // Add w to v’s list.
+}
+
+lli Graph::BFS(lli from)
+{
+    // Mark all the vertices as not visited
+    lli dist[V+2];
+    for(lli i=0;i<=V;i++)
+    i==from?dist[i]=0:dist[i]=10e16;
+    
+
+    bool visited[V+2];
+    for(lli i = 0; i < V+2; i++)
+        visited[i] = false;
+    // Create a queue for BFS
+    list<lli> queue;
+
+    // Mark the current node as visited and enqueue it
+    visited[from] = true;
+    queue.push_back(from); //coz we want to start traversinng from 'from''
+
+    // 'i' will be used to get all adjacent vertices of a vertex
+   
+
+    while(!queue.empty())
+    {
+        // Dequeue a vertex from queue and print it
+        lli tmp = queue.front(); //tmp->node just removed from q,the connections of which will now be enquqed;
+     
+        queue.pop_front();
+
+        // Get all adjacent vertices of the dequeued vertex s
+        // If a adjacent has not been visited, then mark it visited
+        // and enqueue it
+        for(lli i = 0; i <adj[tmp].size(); ++i)
+        {
+            if(!visited[adj[tmp][i]])
+            {
+                visited[adj[tmp][i]]= true;
+                dist[adj[tmp][i]]=dist[tmp]+1;
+                queue.push_back(adj[tmp][i]);
+            }
+        }
+    }
+    cout<<endl;
+    for(lli i=0;i<=V;i++)//actually vertices are from 0 to V-1 but take <= V FOR SAFE SIDE
+    {
+    	cout<<"distance of "<<i<<"="<<dist[i]<<endl;
+	}
+}
+void Graph::DFS(lli k)
+{
+
+bool visited[V+5];
+for(int i=0;i<V+5;++i)
+visited[i]=false;
+
+DFS_Util(k,visited);
+}
+
+void Graph::DFS_Util(lli k,bool visited[])
+{
+	
+	for(lli i=0;i<adj[k].size();i++)
+	{
+		if(!visited[adj[k][i]])
+		{
+			cout<<adj[k][i]<<" ";
+			visited[adj[k][i]]=true;
+			DFS_Util(adj[k][i],visited);
+		}
+	}
+	
+}
+// Driver program to test methods of graph class
+int main(){
+    freopen("input.txt","r",stdin);
+    Graph g(15);//n+1
+    lli i=5,j=5;
+    
+    while(!(i==0&&j==0))
+    {scanf("%lld %lld",&i,&j);
+	g.addEdge(i,j);}
+   
+i=1,j=1;
+    cout << "Following is Breadth First Traversal (starting from vertex 2) with minimum distance \n";
+    
+
+	cout<<g.BFS(2)<<endl;   
+
+    return 0;
+}

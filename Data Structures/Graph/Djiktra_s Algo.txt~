@@ -1,0 +1,37 @@
+lli V,E,t,edge,src,trg,x,y;
+
+lli djisktra(vector< vector<pii> > graph,lli src,lli trgt) //graph(weight,vertex)
+{
+
+  vector<lli> dist(V+1,INT_MAX);
+  dist[src]=0;
+
+  set<pii> curr;    //contains current extensions of connected group in form (min_dist_frm_src,vtx)
+  curr.insert( {0,src} ); 
+
+	while(!curr.empty())
+	{
+	 lli least=curr.begin()->second;
+	 
+	 if(least==trgt) return dist[trgt];
+	 curr.erase( curr.begin() );
+	 
+	 	 for (unsigned lli i=0; i<graph[least].size() ;i++)
+		 {
+		 	pii nbd=graph[least][i];
+		 	
+			 if(dist[ nbd.sd ] > dist[least]+nbd.ft ) //
+			 {
+			 
+			 curr.erase( {dist[nbd.sd] , nbd.sd} );
+			 dist[nbd.sd]=dist[ least ] + nbd.ft ;
+			 curr.insert( {dist[ nbd.sd ], nbd.sd} );
+			 }	 
+		 }
+		 
+	}
+	return -1; //trgt not reachable from src
+
+}
+
+// O(Elog(V))   //logV for extraction from heap,max E times

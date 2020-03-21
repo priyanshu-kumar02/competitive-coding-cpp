@@ -1,0 +1,38 @@
+//X and Y are sorted wrt values of Y (ascending)
+
+lli partition(lli X[],lli Y[],lli start,lli end)
+{
+
+lli index=start+1 ,i=0, pivot=Y[start];
+
+	for ( i=index ; i<=end and index>=0; i++)
+	{
+		
+		if(Y[i]<pivot)
+		{
+		 swap(Y[i],Y[index]);
+		 swap(X[i],X[index]);
+		 index++;
+		}
+		
+	}
+	
+swap(X[index-1],X[start]);
+swap(Y[index-1],Y[start]);
+
+return index-1;
+
+}
+
+void sort(lli X[],lli Y[],lli start,lli end)
+{
+	if(start<end)
+	{
+	lli piv=partition(X,Y,start,end);
+	sort(X,Y,start,piv-1);
+	sort(X,Y,piv+1,end);
+	}
+
+
+}
+

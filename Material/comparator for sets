@@ -1,0 +1,17 @@
+
+Ques: set<unsigned int,double> ...how to order set based on second element
+
+Solution:
+
+You should use the comparator:
+
+struct Cmp
+{
+    bool operator ()(const pair<unsigned int, double> &a, const pair<unsigned int, double> &b)
+    {
+        return a.second < b.second;
+    }
+};
+and then you can define your set like:
+
+set <pair<unsigned int, double>, Cmp> your_set;

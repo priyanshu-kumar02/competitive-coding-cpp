@@ -1,0 +1,6 @@
+%c char
+%lld long long int signed
+
+%lf for scanf double
+%f  for printf double and float
+%s for string as collection of char
