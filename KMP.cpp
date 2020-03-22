@@ -1,36 +1,26 @@
 //0-based indexing
 
-void computeLPS(string pat,lli lps[])  //lps->longest prefix suffix
-{					//lps[i]denotes length of longest prefix of pat[0..i] thats also suffix
-
-lli j=0,i=1;
-lps[0]=0;
-
-	while( i<pat.size() )
-	{
-	 
-		 if(pat[i]==pat[j])
-		 lps[i]=j+1, j++, i++;
-	 
-		 else
-		 {
-			if(j==0)
-			lps[i]=0,i++;
-			
-			else
-			j=lps[j-1];
-		 }
-	 }
-	 
+vector<int> computeLPS(string pat) {					
+    vector<int> lps(pat.size(), 0);
+    int len = 0;
+ 
+    for(int i = 1; i < pat.size(); i++) {
+        while(pat[i] != pat[len] and len != 0) 
+            len = lps[len-1];
+ 
+        if(pat[i] == pat[len])
+            len++;
+        lps[i] = len;
+    }
+    return lps;
 }
 
 void kmp(string pat,string text)
 {
-lli n=text.size();
-lli m=pat.size();
-lli i=0,j=0;
-lli lps[m];
-computeLPS(pat,lps);
+	ll n=text.size();
+	ll m=pat.size();
+	int i=0,j=0;
+	vector<int> lps = computeLPS(pat);
 
 	while (i<n)
 	{
