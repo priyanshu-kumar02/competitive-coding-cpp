@@ -1,18 +1,18 @@
-vec<int> adj[1001];
-int P[1001],SZ[1001],H[1001];
+vec<int> adj[SZ];
+int P[SZ],S[SZ],L[SZ];
 
-void dfs(int n,int h)
+void dfs(int u,int l)
 {
-	H[n]=h;
-	SZ[n]=1;
+	L[u] = l;
+	S[u] = 1;
 	
-	for (int i: adj[n])
-	{
-		if (i!=P[n])
-		{
-			P[i]=n;
-			dfs(i,h+1);
-			SZ[n]+=SZ[i];
+	for (int v: adj[u]) {
+		if (v != P[u]) {
+			P[v] = u;
+			dfs(v,l+1);
+			S[u] += S[v];
 		}
 	}	
 }
+
+//called as: dfs(1, 0)
