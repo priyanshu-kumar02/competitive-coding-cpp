@@ -1,43 +1,30 @@
-// FOR ASCENDING ORDER
-// CALLED AS merge_sort(arr,0,size-1)  //EXACT RANGE TO BE GIVEN
+/*
+merge-sort with INVERSION count
+https://www.spoj.com/problems/INVCNT/
+called as merge_sort(0,n-1);
+*/
 
-void merge_sorted_parts(lli arr[],lli start,lli mid,lli end)
-{
-	lli p=start , q=mid+1;   			 //p,q represent indices of those 2 sorted arrays
-	lli Aux[end-start+1],j=0;
+ll inv;
+ll arr[1000005];
+ 
+void merge_sort(int ss,int se){
 	
-	for(lli i=start;i<=end;i++)
+	if(ss>=se) return;
+	merge_sort(ss,(ss+se)/2);
+	merge_sort((ss+se)/2+1,se);
+	
+	ll aux[se-ss+1],l,r,mid=(ss+se)/2,i,j=0;
+	l=ss,r=mid+1;
+	
+	for(i=ss; i<=se; i++)
 	{
-		if(p>mid)
-		Aux[j++]=arr[q++];
-		
-	    else if(q>end)
-		Aux[j++]=arr[p++];
-		
-		else if(arr[p]>arr[q])
-		Aux[j++]=arr[q++];
-		
-		else
-		Aux[j++]=arr[p++];
-		
+		if(l>mid) aux[j++]=arr[r++];
+		else if(r>se or arr[l]<arr[r]) aux[j++]=arr[l++];
+		else {
+		inv+=mid-l+1;
+		aux[j++]=arr[r++];	
+		}
 	}
-	
-	j=0;
-	for(lli i=start;i<=end;i++)
-	arr[i]=Aux[j++];
-	
+	for(int i=ss,j=0; i<=se; i++)
+	arr[i]=aux[j++];
 }
-
-void merge_sort(lli arr[],lli start,lli end)
-{
-	if(start<end)
-	{
-		lli mid=(start+end)/2;
-		merge_sort(arr,start,mid);
-		merge_sort(arr,mid+1,end);
-		
-		merge_sorted_parts(arr,start,mid,end);
-	}
-}
-
-
