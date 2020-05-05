@@ -1,15 +1,17 @@
 //CODE TO FIND MMI USING FERMET THEOREM.
 //MMI(y,M)=[y^(m-2)]%M;
 
-ll pow(ll x, ll y,ll m) {
+#define mod 1000000007
+
+int pow(int x, int y,int m) {
     if( y == 0) return 1;
-    ll half = pow(x, y/2, m);
-    ll full = (half * half) % m;
+    int half = pow(x, y/2, m);
+    int full = (half * half) % m;
     return y%2 ? (x * full) % m : full;
 }
-
-int findMMI_fermat(int n,int M) {
-    return pow(n,M-2,M);
+ 
+int inv(int n) {
+    return pow(n,mod-2,mod);
 }
 
 //NOTES:
