@@ -9,7 +9,7 @@ Non-invertible functions like max, min, gcd etc require segtree
 
 
 int bit[200001];
-//int n = 100005;
+//int n = 200000;
 
 void update(int i, int delta) {
     for(; i <= n; i += i&-i)
