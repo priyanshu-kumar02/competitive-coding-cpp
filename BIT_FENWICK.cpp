@@ -1,17 +1,20 @@
-int n = 1000000;
+/*
+fenwick require functions to be invertible
+eg. Add, Subtract, multiply etc
+Non-invertible functions like max, min, gcd etc require segtree 
+*/
 
-int BIT[1000001];
+int bit[200001];
+//int n = 100005;
 
-void update(int x, int delta)
-{
-      for(; x <= n; x += x&-x)
-        BIT[x] += delta;
+void update(int i, int delta) {
+    for(; i <= n; i += i&-i)
+    bit[i] += delta;
 }
 
-int query(int x)
-{
-     int sum = 0;
-     for(; x > 0; x -= x&-x)
-        sum += BIT[x];
-     return sum;
+int query(int i) {
+    int sum = 0;
+    for(; i > 0; i -= i&-i) 
+        sum += bit[i];
+    return sum;
 }
