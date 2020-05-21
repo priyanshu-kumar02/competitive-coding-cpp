@@ -1,25 +1,27 @@
 //FACTORIAL and INVERSE FACTORIAL and nCr(i, j) <==> SZ<=1e5
+int f[SZ],c[SZ];
 
-ll f[SZ],c[SZ];
-const ll mod = 998244353;
-
-ll pow(ll x, ll y,ll m) {
-    if( y == 0) return 1;
-    ll half = pow(x, y/2, m);
-    ll full = (half * half) % m;
-    return y%2 ? (x * full) % m : full;
+int exp(int a,int b,int m) {
+    int ans=1;
+	while (b) {
+		if(b & 1LL)
+		ans = (ans * a) % m;
+		a = (a * a) % m;
+		b = b>>1LL;
+	}
+	return ans;
 }
 
 void initialise_facts() {
     f[0]=c[0]=1;	
-    for (ll i = 1;i < SZ;++i) {
+    for (int i = 1;i < SZ;++i) {
         f[i] = (f[i-1] * i) % mod;
-        c[i] = pow(f[i], mod-2, mod);
+        c[i] = exp(f[i], mod-2, mod);
     } 
 }
 
-ll nCr(ll n, ll k)  {
-    ll ans = (1LL * f[n] * c[k]) % mod;
+int nCr(int n, int k)  {
+    int ans = (1LL * f[n] * c[k]) % mod;
     return (1LL * ans * c[n - k]) % mod;
 }
 
