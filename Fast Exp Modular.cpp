@@ -1,5 +1,16 @@
+/*********ITERATIVE*******/ when m=1e9+7
+int exp(int a,int b,int m) {
+    int ans=1;
+	while (b) {
+		if(b & 1LL)
+		ans = (ans * a) % m;
+		a = (a * a) % m;
+		b = b>>1LL;
+	}
+	return ans;
+}
 
-//*******RECURSIVE*******
+/*******RECURSIVE*******/
 
 lli power(lli x, lli y,lli m)
 {
@@ -18,22 +29,7 @@ lli power(lli x, lli y,lli m)
 //complex: log(b)
 
 
-//*********ITERATIVE*******/ when m=1e9+7
-lli exp(lli a,lli b,lli m)
-{
- lli ans=1;
- 
-	while (b>0)
-	{
-		if(b&1)
-		ans=(ans*a)%m;
-		
-		a=(a*a)%m;
-		b=b>>1;
-	}
-	
-	return ans;
-}
+
 
 //******** RECURSIVE FOR MOD=1E18**********/
 
