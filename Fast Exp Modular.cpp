@@ -1,4 +1,7 @@
 /*********ITERATIVE******* when m=1e9+7 */
+//convert b into binary form to understand this
+//complex: log(b)
+
 int exp(int a,int b,int m) {
     int ans=1;
 	while (b) {
@@ -17,10 +20,6 @@ int pow(int x, int y,int m) {
     int full = (half * half) % m;
     return y%2 ? (x * full) % m : full;
 }
-
-
-//convert b into binary form to understand this
-//complex: log(b)
 
 
 
