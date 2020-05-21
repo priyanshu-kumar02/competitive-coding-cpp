@@ -1,4 +1,4 @@
-/*********ITERATIVE*******/ when m=1e9+7
+/*********ITERATIVE******* when m=1e9+7 */
 int exp(int a,int b,int m) {
     int ans=1;
 	while (b) {
@@ -11,17 +11,11 @@ int exp(int a,int b,int m) {
 }
 
 /*******RECURSIVE*******/
-
-lli power(lli x, lli y,lli m)
-{
-    lli temp;
-    if( y == 0)
-        return 1;
-    temp = power(x, y/2,m);
-    if (y%2 == 0)
-        return (temp%m*temp%m)%m;
-    else
-        return (x%m*temp%m*temp%m)%m;
+int pow(int x, int y,int m) {
+    if( y == 0) return 1;
+    int half = pow(x, y/2, m);
+    int full = (half * half) % m;
+    return y%2 ? (x * full) % m : full;
 }
 
 
