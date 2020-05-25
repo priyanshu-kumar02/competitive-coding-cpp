@@ -1,4 +1,5 @@
-int MAX = SZ;
+//https://cp-algorithms.com/algebra/divisors.html
+
 int sp[SZ];
 
 void sieve() {
@@ -21,6 +22,20 @@ int divisor_count(int x) {
 			power++;
 		}
 		count *= (power + 1);
+	}
+	return count;
+}
+
+int divisor_sum(int x) {
+	int count = 1;
+	while (x > 1) {
+		int prime = sp[x];
+		int power = 0;
+		while (sp[x] == prime and x > 1) {
+			x /= sp[x];
+			power++;
+		}
+		count *= ((int)pow(prime, power + 1) - 1) / (prime - 1);
 	}
 	return count;
 }
