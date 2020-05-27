@@ -23,7 +23,22 @@ int query(int i) {
     return sum;
 }
 
+
+
+
 // search fenwick tree, first i such that query(i)>=k
+int binary_search_bit(int k) {
+    int l = 1, r = n;
+    while (r - l > 1) {
+        int mid = (l + r) / 2;
+        if (query(mid) >= k)
+            r = mid;
+        else
+            l = mid + 1;
+    }
+    return query(l) >= x ? l : r;
+}
+//logn approach
 int find_kth(int k) {
     int pre = 0;
     int mask = 0;
@@ -36,8 +51,12 @@ int find_kth(int k) {
     return mask + 1;
 }
 
+
+
+
+
 /*
-Range-update && range-sum code: 
+Range-update && point-query code: 
 Problem: https://cses.fi/problemset/task/1651/
 */
 
