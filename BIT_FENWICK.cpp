@@ -23,8 +23,18 @@ int query(int i) {
     return sum;
 }
 
-
-
+// search fenwick tree, first i such that query(i)>=k
+int find_kth(int k) {
+    int pre = 0;
+    int mask = 0;
+    for (int i = 20; i >= 0; i--) {
+        if (pre + BIT[mask | (1 << i)] < k) {
+            mask |= (1 << i);
+            pre += BIT[mask];
+        }
+    }
+    return mask + 1;
+}
 
 /*
 Range-update && range-sum code: 
