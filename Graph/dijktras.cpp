@@ -25,6 +25,8 @@ vector<int> dijktra(int x) {
 
 /* Dijktra on MATRIX 
 https://www.hackerrank.com/contests/hack-the-interview-iv-apac/challenges/optimal-path-1/problem */
+int di[] = {-1, 0, +1, 0};
+int dj[] = {0, +1, 0, -1};
 
 int dijktra(pii x) {
     map<pii, int> d;
