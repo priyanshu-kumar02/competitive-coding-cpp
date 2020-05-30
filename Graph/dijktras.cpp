@@ -2,21 +2,24 @@ vec<pii> adj[SZ];
 int previous[SZ];
 
 vector<int> dijktra(int x) {
-	vec<int> d(SZ + 1, INT_MAX);
-	d[x] = 0;
+	vec<int> d(SZ, __LONG_LONG_MAX__);
+	d[x] = 0LL;
 	priority_queue< pii, vec<pii>, greater<pii> > pq;
-	pq.push({0, x});
-	
+	pq.push({0LL, x});
+	vec<bool> seen(SZ); //reduces complexity whenever pq contains duplicate elements
+
 	while (!pq.empty()) {	
-		int closest = pq.top().se;
+		int u = pq.top().se;
 		pq.pop();
-		for(auto v: adj[closest]) {
-			int to = v.se;
-			int weight = v.fi;
-			if(d[to] > d[closest] + weight) {
-				d[to] = d[closest] + weight;
-				previous[to] = closest;
-				pq.push({d[to], to});
+		if(seen[u]) continue;
+		seen[u] = true;
+
+		for(pii i: adj[u]) {
+			int v = i.se;
+			int w = i.fi;
+			if(d[v] > d[u] + w) {
+				d[v] = d[u] + w;
+				pq.push({d[v], v});
 			}	
 		}
 	}	
