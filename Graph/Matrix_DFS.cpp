@@ -1,35 +1,34 @@
-//For problem:   http://codeforces.com/contest/598/problem/D
+/* 4-direction matrix DFS */
 
-void dfs(int x,int y,vector<cordinates> &p,long int &cnt)
-{
-	visited[x][y]=true;
-	cordinates tmp; tmp.x=x; tmp.y=y;
-	p.push_back(tmp);
-	
-	if(a[x-1][y]=='*')
-	cnt++;
-	
-	else if(!visited[x-1][y])
-	dfs(x-1,y,p,cnt);
-	
-	if(a[x+1][y]=='*')
-	cnt++;
-	
-	else if(!visited[x+1][y])
-	dfs(x+1,y,p,cnt);
-	
-	if(a[x][y-1]=='*')
-	cnt++;
-	
-	else if(!visited[x][y-1])
-	dfs(x,y-1,p,cnt);
-	
-	if(a[x][y+1]=='*')
-	cnt++;
-	
-	else if(!visited[x][y+1])
-	dfs(x,y+1,p,cnt);
 
+bool vis[55][55];
+string grid[55];
+ 
+int di[] = {-1, 0, +1, 0};
+int dj[] = {0, +1, 0, -1};
+ 
+bool valid(int i, int j) {
+	return i>=1 and i<=n and j>=1 and j<=m;
 }
+ 
+void dfs(int i, int j) {
+	vis[i][j] = true;
+ 
+	for(int k = 0; k < 4; k++) {
+		int ii = i + di[k];
+		int jj = j + dj[k];
+		if(valid(ii,jj) and !vis[ii][jj] and grid[ii][jj] !='#')
+		dfs(ii,jj);
+	}
+}
+ 
 
-//later for all stored cordinates we will update their cost=count in main()
+
+/* 
+8-direction delta
+SPOJ- ABCPATH
+*/
+
+int di[]={-1,-1,-1,0,+1,+1,+1,0};
+int dj[]={-1,0,+1,+1,+1,0,-1,-1};
+
