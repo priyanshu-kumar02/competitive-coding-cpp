@@ -1,9 +1,9 @@
 //DFS-based
 
-int n; // number of vertices
-vector<vector<int>> adj; // adjacency list of graph
-vector<bool> vis(SZ, false);
+int n; // vertices
 vector<int> topo;
+vec<int> adj[SZ];
+int indexOf[SZ];
 
 void dfs(int v) {
     vis[v] = true;
@@ -15,12 +15,25 @@ void dfs(int v) {
 }
 
 void topological_sort() {
-    for (int i = 0; i < n; ++i) {
+    for (int i = 1; i <= n; ++i) {
         if (!vis[i])
             dfs(i);
     }
     reverse(all(topo));
 }
+
+bool isCyclic() {
+	for(int i = 0; i < topo.size(); i++) 
+	indexOf[topo[i]] = i;
+	for(pii e: directed) {
+		if(indexOf[e.fi] > indexOf[e.se])
+		return true;
+	}
+	return false;
+}
+
+
+
 
 //BFS-based
 
