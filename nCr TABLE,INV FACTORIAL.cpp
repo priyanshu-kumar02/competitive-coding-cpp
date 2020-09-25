@@ -21,12 +21,13 @@ void initialise_facts() {
 }
 
 int nCr(int n, int k)  {
+    if(k>n) return 0;
     int ans = (1LL * f[n] * c[k]) % mod;
     return (1LL * ans * c[n - k]) % mod;
 }
 
 
-// FOR nCr where n<=1000
+// FOR nCr where n<=5000
 //see: Lucas therem, pdf in earth
 // based on   nCr= (n-1)C(r-1)  +  (n-1)C(r)
 //all elements of global array are preinitialised to zero
