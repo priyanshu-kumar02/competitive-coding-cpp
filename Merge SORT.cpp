@@ -1,30 +1,16 @@
-/*
-merge-sort with INVERSION count
-https://www.spoj.com/problems/INVCNT/
-called as merge_sort(0,n-1);
-*/
-
-ll inv;
-ll arr[1000005];
- 
-void merge_sort(int ss,int se){
-	
-	if(ss>=se) return;
-	merge_sort(ss,(ss+se)/2);
-	merge_sort((ss+se)/2+1,se);
-	
-	ll aux[se-ss+1],l,r,mid=(ss+se)/2,i,j=0;
-	l=ss,r=mid+1;
-	
-	for(i=ss; i<=se; i++)
-	{
-		if(l>mid) aux[j++]=arr[r++];
-		else if(r>se or arr[l]<arr[r]) aux[j++]=arr[l++];
-		else {
-		inv+=mid-l+1;
-		aux[j++]=arr[r++];	
-		}
-	}
-	for(int i=ss,j=0; i<=se; i++)
-	arr[i]=aux[j++];
-}
+    void mergeSort(int ss, int se, vector<int>& nums) {
+        if(ss>=se) return; 
+        int mid = (ss+se) >> 1;
+        mergeSort(ss, mid, nums);
+        mergeSort(mid+1, se, nums);
+        int l=ss, r=mid+1;
+        vector<int> sorted;
+        
+        while(l<=mid || r<=se) {
+            if(l>mid) sorted.push_back(nums[r++]);
+            else if(r>se || nums[l]<nums[r]) sorted.push_back(nums[l++]);
+            else sorted.push_back(nums[r++]);
+        }
+        for(int i=ss; i<=se; i++) 
+            nums[i]=sorted[i-ss];
+    }
